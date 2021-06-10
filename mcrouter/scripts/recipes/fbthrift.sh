@@ -10,13 +10,6 @@ if [[ ! -d "$PKG_DIR/fbthrift" ]]; then
   git clone https://github.com/facebook/fbthrift
   cd "$PKG_DIR/fbthrift" || die "cd fail"
   git checkout v2021.05.24.00
-  if [[ -f "$REPO_BASE_DIR/mcrouter/FBTHRIFT_COMMIT" ]]; then
-    FBTHRIFT_COMMIT="$(head -n 1 "$REPO_BASE_DIR/mcrouter/FBTHRIFT_COMMIT")"
-    echo "FBTHRIFT_COMMIT file found: using fbthrift commit $FBTHRIFT_COMMIT"
-    git checkout "$FBTHRIFT_COMMIT"
-  else
-    echo "No FBTHRIFT_COMMIT file, using fbthrift HEAD=$(git rev-parse HEAD)"
-  fi
 fi
 
 cd "$PKG_DIR/fbthrift/build" || die "cd fbthrift failed"
